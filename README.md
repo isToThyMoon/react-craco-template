@@ -1,3 +1,11 @@
+# 环境依赖：
+
+@craco/craco 6 官方支持 cra4 react-scripts4，后续会更新支持 cra5，目前可用，后续更新。
+craco-less2 支持 craco6.1.2 以上，react-script5 以上
+
+node16 版本会强制约束版本依赖树关系导致无法安装。
+node14 正常。建议未升级 craco 完美支持 cra5 前使用 node14 版本。
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
