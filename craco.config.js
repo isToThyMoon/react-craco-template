@@ -2,7 +2,7 @@
  * @Author: 王荣
  * @Date: 2022-06-09 15:36:40
  * @LastEditors: 王荣
- * @LastEditTime: 2022-08-19 13:39:55
+ * @LastEditTime: 2022-08-23 20:13:07
  * @Description: 填写简介
  */
 
@@ -25,11 +25,11 @@ const {
   loaderByName,
 } = require("@craco/craco");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+// const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+// const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const BundleAnalyzerPlugin =
+//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
   babel: {
