@@ -6,6 +6,39 @@ craco-less2 支持 craco6.1.2 以上，react-script5 以上
 node16 版本会强制约束版本依赖树关系导致无法安装。
 node14 正常。建议未升级 craco 完美支持 cra5 前使用 node14 版本。
 
+
+# commit 规则：
+
+git commit -m "type: xxxxxxxx"
+不按规则写commit信息会无法 commit 推送
+type 合法类型如下：
+
+```js
+[
+  'build', 影响构建系统或外部依赖项的更改（webpack npm等）
+  'chore',  构建配置相关 更改构建过程或辅助工具和库，例如文档生成
+  'ci', 对ci配置文件和脚本的更改（一些自动化工具的配置文件 或者脚本修改）
+  'docs', 仅文档修改
+  'feat', 新功能 feature
+  'fix', 错误修复
+  'perf', 性能相关 改进性能的代码更改
+  'refactor', 代码重构，既不修复错误也不增加新功能的代码更改（重构）
+  'revert', 分支回溯
+  'style', 样式相关 不影响代码含义的样式更改
+  'test' 测试相关 添加缺失或更正现有测试
+];
+```
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
