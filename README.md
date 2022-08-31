@@ -1,16 +1,26 @@
+<!--
+ * @Author: 王荣
+ * @Date: 2022-08-19 13:49:11
+ * @LastEditors: 王荣
+ * @LastEditTime: 2022-08-30 15:09:36
+ * @Description: 填写简介
+-->
+
 # 环境依赖：
 
-@craco/craco 6 官方支持 cra4 react-scripts4，后续会更新支持 cra5，目前可用，后续更新。
+@craco/craco 6 官方支持 cra4 react-scripts4，后续会更新支持 cra5，虽然目前可用 cra5，后续需要关注新版本发布更新。
 craco-less2 支持 craco6.1.2 以上，react-script5 以上
 
 node16 版本会强制约束版本依赖树关系导致无法安装。
 node14 正常。建议未升级 craco 完美支持 cra5 前使用 node14 版本。
 
+拉取仓库代码 git commit 时，如果提示 husky 内脚本无执行权限，执行 chmod +x ... 添加 excutable 权限。
+如果 husky 脚本未正确运行，尝试 npm run prepare 重新安装 husky 脚本。
 
 # commit 规则：
 
 git commit -m "type: xxxxxxxx"
-不按规则写commit信息会无法 commit 推送
+不按规则写 commit 信息会无法 commit 推送
 type 合法类型如下：
 
 ```js
@@ -28,16 +38,6 @@ type 合法类型如下：
   'test' 测试相关 添加缺失或更正现有测试
 ];
 ```
-
-
-
-
-
-
-
-
-
-
 
 # Getting Started with Create React App
 
