@@ -133,11 +133,12 @@ module.exports = {
      *  - 几乎所有的 webpack 配置均可以在 configure 函数中读取，然后覆盖
      */
     configure: (webpackConfig, { env, paths }) => {
-      console.log("**entry**", webpackConfig.entry);
-      console.log("**devtool**", webpackConfig.devtool);
+      // console.log("**entry**", webpackConfig.entry);
+      // console.log("**devtool**", webpackConfig.devtool);
 
-      // 修改统计信息输出
-      webpackConfig.stats = "normal";
+      // 修改统计信息输出 打包或开发时build完毕的控制台输出
+      // 'errors-only' 'errors-warnings' 'minimal' 'none' 'normal' 'verbose' 'detailed' 'summary'
+      webpackConfig.stats = "errors-warnings";
 
       // devtool 决定sourcemap的形式
       // webpackConfig.devtool = false;
@@ -148,7 +149,7 @@ module.exports = {
       // 修改entry
       webpackConfig.entry = {
         // app: webpackConfig.entry,
-        company_add_on: webpackConfig.entry,
+        app: webpackConfig.entry,
         // button: path.resolve(__dirname, "src/components/button/index.tsx"),
         // button: './src/components/button/index.tsx'
       };
@@ -170,7 +171,7 @@ module.exports = {
       ];
 
       // 配置devserver相关配置
-      console.log("devServer", webpackConfig.devServer);
+      // console.log("devServer", webpackConfig.devServer);
       webpackConfig.devServer = {
         ...webpackConfig.devServer,
         port: 9000,
@@ -228,51 +229,51 @@ module.exports = {
           // },
           cacheGroups: {
             appVendor: {
-              name: "company_add_on-vendor",
+              name: "app-vendor",
               // webpack4之前用test区分module位置，webpack5推荐使用type区分类型
               // 详见文档资源模块（asset module）的解释
               // type: "javascript/auto",
               test: /[\\/]node_modules[\\/]/,
               // priority: 20,
               chunks: (chunk) => {
-                return chunk.name === "company_add_on";
+                return chunk.name === "app";
               },
             },
 
             appMain: {
-              name: "company_add_on-main",
+              name: "app-main",
               // webpack4之前用test区分module位置，webpack5推荐使用type区分类型
               // 详见文档资源模块（asset module）的解释
               // type: "javascript/auto",
               test: /[\\/]src[\\/]/,
               // priority: 10,
               chunks: (chunk) => {
-                return chunk.name === "company_add_on";
+                return chunk.name === "app";
               },
             },
 
             // 配合mini-css-extract-plugin,所有的 CSS 可以被提取到一个 CSS 文件中，请注意在 webpack 5 中应该使用 type 而不是 test，否则将会生成.js 文件而不是.css。这是因为 test 不知道应该去掉哪个模块（在这种情况下，它不会检测到.js 应该被删除）。
             appVendorStyles: {
-              name: "company_add_on_vendor_styles",
+              name: "app_vendor_styles",
               type: "css/mini-extract",
               // chunks: "all",
               // 清晰区分了type可不设置priority，没区分type时 会走上面的cache规则 影响打包出的包名
               // priority: 10,
               test: /[\\/]node_modules[\\/]/,
               chunks: (chunk) => {
-                return chunk.name === "company_add_on";
+                return chunk.name === "app";
               },
               enforce: true,
             },
 
             appMainStyles: {
-              name: "company_add_on_main_styles",
+              name: "app_main_styles",
               type: "css/mini-extract",
               // chunks: "all",
               // 清晰区分了type可不设置priority，没区分type时 会走上面的cache规则 影响打包出的包名
               // priority: 10,
               chunks: (chunk) => {
-                return chunk.name === "company_add_on";
+                return chunk.name === "app";
               },
               enforce: true,
             },
@@ -345,7 +346,7 @@ module.exports = {
       // 修改file loader
       const { isFound: isFoundFileLoader, match: foundedFileLoader } =
         getLoader(webpackConfig, loaderByName("file-loader"));
-      console.log("**foundedFileLoader**", foundedFileLoader);
+      // console.log("**foundedFileLoader**", foundedFileLoader);
       if (isFoundFileLoader) {
         Object.assign(foundedFileLoader.loader.options, {
           name: "static/media/[name].[hash].[ext]",
@@ -357,10 +358,10 @@ module.exports = {
         isFound: isFoundMiniCssExtractPlugin,
         match: foundedMiniCssExtractPlugin,
       } = getPlugin(webpackConfig, pluginByName("MiniCssExtractPlugin"));
-      console.log(
-        "**foundedMiniCssExtractPlugin**",
-        foundedMiniCssExtractPlugin
-      );
+      // console.log(
+      //   "**foundedMiniCssExtractPlugin**",
+      //   foundedMiniCssExtractPlugin
+      // );
       if (isFoundMiniCssExtractPlugin) {
         Object.assign(foundedMiniCssExtractPlugin.options, {
           filename: "static/css/[name].css",
@@ -372,10 +373,10 @@ module.exports = {
         isFound: isFoundWebpackManifestPlugin,
         match: foundedWebpackManifestPlugin,
       } = getPlugin(webpackConfig, pluginByName("WebpackManifestPlugin"));
-      console.log(
-        "**foundedWebpackManifestPlugin**",
-        foundedWebpackManifestPlugin
-      );
+      // console.log(
+      //   "**foundedWebpackManifestPlugin**",
+      //   foundedWebpackManifestPlugin
+      // );
       if (isFoundWebpackManifestPlugin) {
         Object.assign(foundedWebpackManifestPlugin.options, {
           generate: (seed, files, entrypoints) => {
@@ -399,7 +400,7 @@ module.exports = {
               entrypointFiles.push(filterUnMap(entrypoints[entry]));
             });
 
-            console.log("!!entrypointFiles!!", entrypointFiles);
+            // console.log("!!entrypointFiles!!", entrypointFiles);
 
             return {
               files: manifestFiles,
